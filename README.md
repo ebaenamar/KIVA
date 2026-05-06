@@ -1,53 +1,143 @@
-# Riverst
+# KIVA - Easy Installation Fork
+
+> **Fork of [Riverst](https://github.com/sensein/riverst)** with simplified installation scripts and comprehensive guides for the MA AI Hub x SundAI Hack Day.
 
 ![Avatar screenshot](public/fabio_says_hi.png)
 
-## Do you need/want to...
+## 🚀 Quick Start (Recommended)
 
-- build interactive user-avatar experiences (speech-based, with video/multimodal support)?
-- collect high-quality conversational data for research or industry projects?
-- automatically analyze conversations for behavioral, linguistic, or engagement metrics?
+**For Mac/Linux users** - Get KIVA running in 2 commands:
 
-| Session overview | Automated analysis summary |
+### Terminal 1 - Start Server
+```bash
+git clone https://github.com/ebaenamar/KIVA.git
+cd KIVA
+./start_server.sh
+```
+
+### Terminal 2 - Start Client
+```bash
+cd KIVA
+./start_client.sh
+```
+
+Then open **Chrome** and go to: `http://localhost:5173`
+
+---
+
+## 📋 Prerequisites
+
+- **Supported OS:**
+  - ✅ Apple Silicon (M-chip) macOS
+  - ✅ Ubuntu Linux
+  - ❌ Not supported on Windows (use GitHub Codespaces instead)
+
+- **Required:**
+  - Python 3.11+ (conda or venv)
+  - Node.js 16+
+  - OpenAI API key ([get one here](https://platform.openai.com/api-keys))
+  - Chrome 134+ browser
+
+---
+
+## 🎯 What's Different in This Fork?
+
+This fork adds:
+
+1. **🔧 Automated setup scripts** (`start_server.sh` and `start_client.sh`)
+   - Auto-detect conda/venv
+   - Auto-install dependencies
+   - Verify API keys before starting
+   
+2. **📚 Installation guides** (in `KIVA/` folder)
+   - `kiva_deploy_walkthrough.pdf` - Technical deployment guide
+   - `kiva_nontechnical_walkthrough.pdf` - Non-technical user guide
+   - `kiva_presession_presentation.pdf` - Complete pre-session presentation
+
+3. **🎨 Updated avatars** - Fixed avatar configuration for faster loading
+
+---
+
+## 📖 Detailed Installation
+
+### Option A: Using the Scripts (Easiest)
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/ebaenamar/KIVA.git
+   cd KIVA
+   ```
+
+2. **Set up your API key**
+   ```bash
+   cd src/server
+   cp env.example .env
+   nano .env  # Add your OPENAI_API_KEY
+   cd ../..
+   ```
+
+3. **Run the server** (Terminal 1)
+   ```bash
+   ./start_server.sh
+   ```
+   The script will:
+   - Create a conda environment (or venv if conda not available)
+   - Install all dependencies
+   - Start the server on `http://localhost:7860`
+
+4. **Run the client** (Terminal 2)
+   ```bash
+   ./start_client.sh
+   ```
+   The script will:
+   - Install npm dependencies
+   - Check if server is running
+   - Start the client on `http://localhost:5173`
+
+5. **Open in browser**
+   - Go to `http://localhost:5173`
+   - Select an avatar
+   - Try "Demo ready to go" or "Free style interaction"
+
+### Option B: Manual Installation
+
+See the [original Riverst README](https://github.com/sensein/riverst#getting-started) for manual setup instructions.
+
+---
+
+## 🎓 What is KIVA?
+
+**KIVA** (Knowledge Integration and Vocabulary Acquisition through AI) is an interactive AI tutoring platform built on Riverst. It enables:
+
+- **Speech-driven avatar interactions** for educational activities
+- **Vocabulary training** for children and language learners
+- **Audiobook experiences** with interactive avatars
+- **Customizable tutoring sessions** via simple configuration
+
+### Video Demos
+
+| Demo | Description |
 |---|---|
-| ![Session overview](public/session_summary_example.png) | ![Automated analysis](public/automated_audio_analysis.png) |
-
-
-**If so, Riverst is for you.**
-
----
-
-## Video demos
-
-| Video Demo | Description |
-|---|---|
-| [Riverst Demo](https://drive.google.com/file/d/1r2LoBGbjBx1mdDIv-fPzGeZVEYf1kLw8/view?usp=sharing) | Demo of the Riverst platform in action. What can I do with Riverst? |
-| [KIVA Activity Demo](https://drive.google.com/file/d/1jTHvTXG4WWIYqgqjC4lp1LWMEnyZJQzr/view?usp=sharing) | Demonstration of a vocabulary teaching activity workflow, exploiting pipecat-ai-flows under the hood. |
-| [Riverst + KIVA Activity Summary](https://drive.google.com/file/d/1AvYnSq87neOYj_YSduYatN5D4rdO-7QG/view?usp=sharing) | Overview and summary of configuration pages in Riverst and automatically generated summary of the KIVA activity. |
-
+| [Riverst Platform](https://drive.google.com/file/d/1r2LoBGbjBx1mdDIv-fPzGeZVEYf1kLw8/view?usp=sharing) | Overview of the Riverst platform |
+| [KIVA Activity](https://drive.google.com/file/d/1jTHvTXG4WWIYqgqjC4lp1LWMEnyZJQzr/view?usp=sharing) | Vocabulary teaching workflow demo |
+| [Activity Summary](https://drive.google.com/file/d/1AvYnSq87neOYj_YSduYatN5D4rdO-7QG/view?usp=sharing) | Configuration and analysis features |
 
 ---
 
-## What is Riverst?
+## 🛠️ How to Customize Your Session
 
-Riverst is a platform for building, running, and analyzing interactive user-avatar conversations. It enables you to:
+1. On the homepage, click **"Free style interaction"**
+2. Modify these key fields:
+   - **Avatar System Prompt** - Define who the avatar is (e.g., "You are a friendly math tutor")
+   - **Task Description** - What the avatar should do (e.g., "Help practice multiplication")
+   - **Avatar Personality** - Character traits (e.g., "Patient, encouraging")
+3. Click **"Run a demo"** and start talking!
 
-- Create engaging, speech-driven (and optionally multimodal) avatar interactions.
-- Use these interactions for real-time applications, data collection, or research studies.
-- Automatically process and analyze collected conversations with built-in pipelines (leveraging [senselab](https://github.com/sensein/senselab)) for behavioral and speech analysis.
-
----
-
-## How it works
-
-1. **User interacts with an avatar** (primarily via speech, with optional video/multimodal input).
-2. **Conversations are recorded and stored** for later review or analysis.
-3. **Automated pipelines** process the data, extracting features and generating insights (e.g., speech metrics, behavioral markers).
-4. **Results can be used** for research, product feedback, or to power adaptive experiences.
+See `KIVA/kiva_nontechnical_walkthrough.pdf` for detailed examples.
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 src/
@@ -63,106 +153,43 @@ src/
 
 ---
 
-## Requirements
+## 🐛 Troubleshooting
 
-- **Supported OS:**
-  - ✅ Apple Silicon (M-chip) macOS
-  - ✅ Ubuntu Linux
-  - ❌ Not supported on Windows
+| Problem | Solution |
+|---------|----------|
+| **"Failed to create session"** | Check your `OPENAI_API_KEY` in `src/server/.env` |
+| **Avatar not loading** | Clear browser cache, try a different avatar |
+| **No microphone** | Chrome → Settings → Privacy → Microphone → Allow |
+| **"conda: command not found"** | Install [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or use venv |
+| **"npm: command not found"** | Install [Node.js](https://nodejs.org/) |
+| **Port already in use** | Kill processes on ports 7860/5173 or restart computer |
 
-- Python 3.11+
-- Node.js 16+ (for React client)
-- API keys for 3rd party services (see .env.example files in both client and server)
-- Modern web browser with WebRTC support (e.g., Chrome 134+)
-
----
-
-## Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/sensein/riverst.git
-cd riverst
-```
-
-### 2. Set up environment variables
-
-- In `src/server/`, rename [`.env.example`](src/server/env.example) to `.env` and fill in the required API keys and configuration
-- In `src/client/react/`, rename [`.env.example`](src/client/react/env.example) to `.env` and fill in the required API keys and configuration
-
-More detailed instructions for setting up the [client](src/client/react/README.md) and [server](src/server/README.md) can be found in their respective README documents.
-
-**Note**: Not all API KEYS are strictly required. Only if you want to use a remote service, you need to expose the corresponding API KEY
-
-**Note**: If you want to run local models, you will need to have Ollama or another method for running models locally. Please see [#5 under Getting Started for the server setup](src/server/README.md#getting-started).
-
-### 3. Run
-
-#### 3a. Run with Docker
-
-```bash
-docker compose up --build
-```
-
-This default Docker setup builds the server for CPU / non-GPU deployment.
-
-To build with GPU-oriented extras and request a GPU-enabled container runtime:
-
-```bash
-docker compose -f docker-compose.yaml -f docker-compose.gpu.yaml up --build
-```
-
-#### 3b. Run manually in two different tabs of your terminal (recommended)
-
-- **Start the server:**
-  ```bash
-  cd src/server
-  conda create -n riverst python=3.11
-  conda activate riverst
-  conda install -c conda-forge "ffmpeg=7.*"
-  pip install -r requirements.txt
-  python main.py
-  ```
-
-  For a GPU-oriented install on Linux, use:
-  ```bash
-  pip install -r requirements.gpu.txt
-  ```
-
-  To force local inference onto CPU even on a machine with an accelerator, set:
-  ```bash
-  export RIVERST_COMPUTE_DEVICE=cpu
-  ```
-
-- **Start the client:**
-  ```bash
-  cd src/client/react
-  npm install
-  npm run dev
-  ```
-
-⚠️ **Note:** The server must be running before starting the client.
-
-ℹ️ **Note 2:** For AWS EC2 deployment instructions, see [here](notes/first_steps_to_deploy.md).
-
-### 4. Run into issues?
-
-It's possible some issues might have arisen along the way. Feel free to post an issue asking for help as well as check out our [Common Pitfalls Guide](notes/common_pitfalls.md) for some issues that we have seen pop up.
+For more help, see `KIVA/kiva_deploy_walkthrough.pdf`.
 
 ---
 
-## 🙏 Acknowledgments
+## 📚 Additional Resources
 
-Riverst builds on the work of these fantastic open-source projects:
+- **Installation Guides** (in `KIVA/` folder):
+  - `kiva_deploy_walkthrough.pdf` - Step-by-step technical guide
+  - `kiva_nontechnical_walkthrough.pdf` - Non-technical user guide with examples
+  - `kiva_presession_presentation.pdf` - Complete presentation for workshops
 
-- **[TalkingHead](https://github.com/met4citizen/TalkingHead)** — WebGL/Three.js talking-head renderer for avatar animation.
-- **[Contextless Phonemes (CUPE)](https://github.com/tabahi/contexless-phonemes-CUPE)** — Efficient phoneme modeling utilities.
-- **[Pipecat](https://github.com/pipecat-ai/pipecat)** — Real-time, multimodal agent framework for low-latency streaming.
-- **[senselab](https://github.com/sensein/senselab)** — Python package for speech processing, feature extraction, and behavioral analysis.
+- **Original Riverst Documentation**: [github.com/sensein/riverst](https://github.com/sensein/riverst)
 
 ---
 
-## Project board
+## 🙏 Credits
 
-The project is in continuous progress. Follow [the project plan here](https://github.com/orgs/sensein/projects/55).
+This fork is maintained by [@ebaenamar](https://github.com/ebaenamar) for the **MA AI Hub x SundAI - Reimagining Education with AI** hack day.
+
+**Original Riverst** by [Sensein Lab](https://github.com/sensein) builds on:
+- [TalkingHead](https://github.com/met4citizen/TalkingHead) - WebGL avatar renderer
+- [Pipecat](https://github.com/pipecat-ai/pipecat) - Real-time multimodal agent framework
+- [senselab](https://github.com/sensein/senselab) - Speech processing and analysis
+
+---
+
+## 📄 License
+
+Same as the original Riverst project. See [LICENSE](LICENSE) for details.
