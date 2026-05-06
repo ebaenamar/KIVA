@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Fabio",
+    "modelUrl": "/avatars/fabio_avaturn.glb?morphTargets=ARKit,Oculus+Visemes,mouthOpen,mouthSmile,eyesClosed,eyesLookUp,eyesLookDown&textureSizeLimit=1024&textureFormat=png",
+    "gender": "masculine"
+  },
+  {
+    "id": 2,
+    "name": "Bruce",
+    "modelUrl": "/avatars/bruce_avaturn.glb?morphTargets=ARKit,Oculus+Visemes,mouthOpen,mouthSmile,eyesClosed,eyesLookUp,eyesLookDown&textureSizeLimit=1024&textureFormat=png",
+    "gender": "masculine"
+  }
+]

@@ -1,0 +1,13 @@
+.DS_Store
+__pycache__/
+.qodo
+piper/
+src/server/authorization/authorized_users.json
+src/server/activities/vocab-tutoring/utils/higgs-audio
+.vscode/settings.json
+src/server/uploads/
+src/client/react/public/avatars/sg-model2.glb
+
+# Demo site
+demo-site/.env.local
+dist-demo/

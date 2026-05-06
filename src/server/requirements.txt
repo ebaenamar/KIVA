@@ -1,0 +1,24 @@
+python-dotenv
+aiofiles
+uvicorn
+fastapi[all]
+pipecat-ai[google,elevenlabs,silero,webrtc,whisper,anthropic]==0.0.89
+pipecat-ai[mlx-whisper]==0.0.89; sys_platform == "darwin" and platform_machine == "arm64"
+pipecat-ai-small-webrtc-prebuilt
+kokoro
+noisereduce
+pipecat-ai-flows
+senselab
+torchaudio
+praat-parselmouth
+speechbrain
+opensmile
+opencv-python
+ultralytics
+google-auth
+google-auth-oauthlib
+python-jose[cryptography]
+python-multipart
+#onnx>=1.12.0  # for gpu
+#onnxslim>=0.1.67  # for gpu
+#onnxruntime-gpu  # for gpu

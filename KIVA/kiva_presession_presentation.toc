@@ -1,0 +1,7 @@
+\beamer@sectionintoc {1}{Event Overview}{3}{0}{1}
+\beamer@sectionintoc {2}{What is KIVA?}{5}{0}{2}
+\beamer@sectionintoc {3}{System Architecture}{7}{0}{3}
+\beamer@sectionintoc {4}{Installation Guide}{10}{0}{4}
+\beamer@sectionintoc {5}{Activity Structure}{16}{0}{5}
+\beamer@sectionintoc {6}{Hack Day Opportunities}{19}{0}{6}
+\beamer@sectionintoc {7}{Resources \& Next Steps}{22}{0}{7}

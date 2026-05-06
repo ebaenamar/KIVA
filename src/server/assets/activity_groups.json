@@ -1,0 +1,94 @@
+[
+  {
+    "title": "Avatar customization",
+    "activities": [
+      {
+        "title": "Select your avatar",
+        "images": ["/figures/select_avatar_man_white.svg",
+                   "/figures/select_avatar_woman_black.svg",
+                   "/figures/select_avatar_woman_white.svg",
+                   "/figures/select_avatar_man_black.svg"],
+        "description": "Choose who you'll interact with from our library of avatars ready to go.",
+        "route": "/avatar-creation",
+        "disabled": false
+      },
+      {
+        "title": "Upload your avatar",
+        "images": ["/figures/create_avatar_black.svg",
+                   "/figures/create_avatar_white.svg"],
+        "description": "Upload a GLB avatar file to use in your interactions.",
+        "route": "/avatar-upload",
+        "disabled": false
+      }
+    ]
+  },
+  {
+    "title": "Playground just for fun",
+    "activities": [
+      {
+        "title": "Free style interaction",
+        "images": ["/figures/avatar_interaction_black.svg",
+                   "/figures/avatar_interaction_white.svg"],
+        "description": "Let's talk: no script, just connection.",
+        "route": "/avatar-interaction-settings",
+        "disabled": false,
+        "settings_options_filepath": "api/activities/basic-avatar-interaction/session_config"
+      },
+      {
+        "title": "Demo ready to go",
+        "images": ["/figures/avatar_interaction_white.svg",
+                   "/figures/avatar_interaction_black.svg"],
+        "description": "See how easy it is to get started.",
+        "route": "/avatar-interaction-settings",
+        "disabled": false,
+        "settings_options_filepath": "api/activities/basic-avatar-demo/session_config"
+      }
+
+    ]
+  },
+  {
+    "title": "Knowledge Integration and Vocabulary Acquisition through AI (KIVA)",
+    "activities": [
+      {
+        "title": "Listen to an audiobook",
+        "images": ["/figures/audiobook_white.svg",
+                   "/figures/audiobook_black.svg"],
+        "description": "Follow along with visual cues that support reading, not just listening.",
+        "route": "/listen-to-an-audio-book",
+        "disabled": false
+      },
+      {
+        "title": "Child vocabulary training",
+        "images": ["/figures/avatar_interaction_black.svg",
+                   "/figures/avatar_interaction_white.svg"],
+        "description": "Discover new words through fun, guided play with your avatar.",
+        "route": "/avatar-interaction-settings",
+        "disabled": false,
+        "settings_options_filepath": "api/activities/vocab-tutoring/session_config"
+      }
+    ]
+  },
+  {
+    "title": "L2 learning activities",
+    "activities": [
+      {
+        "title": "English as a second language for Italians",
+        "images": ["/figures/avatar_interaction_black.svg",
+                   "/figures/avatar_interaction_white.svg"],
+        "description": "Discover new English words through fun, guided play with your avatar.",
+        "route": "/avatar-interaction-settings",
+        "disabled": false,
+        "settings_options_filepath": "api/activities/esl-vocab-tutoring/session_config"
+      },
+      {
+        "title": "Italian as a second language for Americans",
+        "images": ["/figures/avatar_interaction_black.svg",
+                   "/figures/avatar_interaction_white.svg"],
+        "description": "Discover new Italian words through fun, guided play with your avatar.",
+        "route": "/avatar-interaction-settings",
+        "disabled": false,
+        "settings_options_filepath": "api/activities/isl-vocab-tutoring/session_config"
+      }
+    ]
+  }
+]

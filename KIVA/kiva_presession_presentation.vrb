@@ -1,0 +1,13 @@
+\frametitle{Installation: Step 1 — Clone Repository}
+\begin{verbatim}
+# Clone the repository
+git clone https://github.com/sensein/riverst.git
+cd riverst
+\end{verbatim}
+
+\vspace{0.5cm}
+
+\begin{block}{Repository Structure}
+\small
+\texttt{riverst/} contains \texttt{src/server/} (FastAPI backend), \texttt{src/client/react/} (React frontend), \texttt{KIVA/} (documentation), and \texttt{docker-compose.yaml}
+\end{block}

@@ -1,0 +1,7 @@
+.float-btn-connected {
+background-color: red !important;
+}
+
+.float-btn-connected .ant-float-btn-body {
+background-color: red !important;
+}
