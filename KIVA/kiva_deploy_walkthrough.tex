@@ -32,19 +32,49 @@
 \titlepage
 \end{frame}
 
+\begin{frame}{About KIVA}
+\begin{center}
+\Large KIVA is built on \textbf{Riverst}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{block}{Original Project}
+\textbf{Riverst} by Sensein Lab\\
+\small
+\url{https://github.com/sensein/riverst}\\[0.2cm]
+Platform for building interactive user-avatar conversations with speech analysis
+\end{block}
+
+\vspace{0.3cm}
+
+\begin{block}{This Fork}
+\textbf{KIVA} (Knowledge Integration and Vocabulary Acquisition)\\
+\small
+\url{https://github.com/ebaenamar/KIVA}\\[0.2cm]
+Adds easy installation scripts and deployment guides for educational activities
+\end{block}
+
+\vspace{0.3cm}
+
+\begin{center}
+\textcolor{kivagray}{\small This presentation uses the KIVA fork for simplified setup}
+\end{center}
+\end{frame}
+
 \begin{frame}{What You Need}
 \begin{columns}[T]
 \column{0.5\textwidth}
 \textbf{Hardware \& OS}
 \begin{itemize}
     \item macOS (Apple Silicon) or Ubuntu Linux
-    \item \textcolor{kivared}{Not supported on Windows}
+    \item \textcolor{kivaorange}{Windows:} Use GitHub Codespaces
 \end{itemize}
 
 \vspace{0.5cm}
 \textbf{Software}
 \begin{itemize}
-    \item Python 3.11+
+    \item Python 3.11+ (or conda)
     \item Node.js 16+
     \item Git
     \item Chrome 134+ (for WebRTC)
@@ -55,25 +85,29 @@
 \begin{itemize}
     \item \textbf{Required:} OpenAI API key
     \item \textbf{Optional:} Hugging Face token
-    \item \textbf{Not needed:} Google OAuth (disabled by default)
 \end{itemize}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 \begin{block}{Get your OpenAI key}
 \small
 \url{https://platform.openai.com/api-keys}
 \end{block}
+
+\vspace{0.3cm}
+\begin{alertblock}{Windows Users}
+\small See slide on GitHub Codespaces
+\end{alertblock}
 \end{columns}
 \end{frame}
 
 \begin{frame}{Step 1: Clone the Repo}
 \begin{center}
-\Large \texttt{git clone https://github.com/sensein/riverst.git}
+\Large \texttt{git clone https://github.com/ebaenamar/KIVA.git}
 \end{center}
 
 \vspace{0.5cm}
 \begin{center}
-\large \texttt{cd riverst}
+\large \texttt{cd KIVA}
 \end{center}
 
 \vspace{0.8cm}
@@ -221,6 +255,40 @@ Node handles everything via \texttt{package.json}.
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Windows Users: GitHub Codespaces}
+\small
+\textbf{KIVA doesn't run natively on Windows.} Use GitHub Codespaces:
+
+\vspace{0.2cm}
+
+\begin{enumerate}
+    \setlength\itemsep{0.25cm}
+    \item Go to \texttt{https://github.com/ebaenamar/KIVA}
+    \item Click green \textbf{Code} button $\rightarrow$ \textbf{Codespaces} tab
+    \item Click \textbf{Create codespace on main} (wait 2-3 min)
+    \item In terminal: \texttt{./start\_server.sh} (Terminal 1)
+    \item New terminal: \texttt{./start\_client.sh} (Terminal 2)
+    \item \textbf{Ports} tab $\rightarrow$ forward port 5173
+    \item Open the forwarded URL in browser
+\end{enumerate}
+
+\vspace{0.3cm}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{block}{Free tier}
+\footnotesize
+60 hrs/month free
+\end{block}
+
+\column{0.5\textwidth}
+\begin{alertblock}{API Key}
+\footnotesize
+Set in \texttt{src/server/.env}
+\end{alertblock}
+\end{columns}
+\end{frame}
+
 \begin{frame}{Quick Reference Card}
 \begin{center}
 \begin{tikzpicture}[
@@ -229,11 +297,11 @@ Node handles everything via \texttt{package.json}.
     arr/.style={->, >=stealth, thick, color=kivablue}
 ]
 
-\node[stepbox] (s1) {\faGithub\ \texttt{git clone https://github.com/sensein/riverst.git}};
-\node[stepbox, below=of s1] (s2) {\faPython\ \texttt{conda create -n riverst python=3.11} \& activate};
-\node[stepbox, below=of s2] (s3) {\faKey\ \texttt{cp env.example .env} -- Add your OpenAI key};
-\node[stepbox, below=of s3] (s4) {\faNpm\ \texttt{pip install -r requirements.txt} \& \texttt{npm install}};
-\node[stepbox, below=of s4] (s5) {\faPlay\ \texttt{python main.py} + \texttt{npm run dev}};
+\node[stepbox] (s1) {\faGithub\ \texttt{git clone https://github.com/ebaenamar/KIVA.git}};
+\node[stepbox, below=of s1] (s2) {\faKey\ \texttt{cd KIVA/src/server \&\& cp env.example .env} -- Add OpenAI key};
+\node[stepbox, below=of s2] (s3) {\faPlay\ \texttt{./start\_server.sh} (Terminal 1)};
+\node[stepbox, below=of s3] (s4) {\faPlay\ \texttt{./start\_client.sh} (Terminal 2)};
+\node[stepbox, below=of s4] (s5) {\faChrome\ Open \texttt{http://localhost:5173} in Chrome};
 
 \draw[arr] (s1) -- (s2);
 \draw[arr] (s2) -- (s3);
