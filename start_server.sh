@@ -24,14 +24,37 @@ if ! grep -q 'OPENAI_API_KEY="sk-' .env; then
     exit 1
 fi
 
-# Intentar usar conda si está disponible
-if command -v conda &> /dev/null; then
+# Detectar si estamos en GitHub Codespaces
+if [ -n "$CODESPACES" ]; then
+    echo "🐙 Detectado GitHub Codespaces - usando venv..."
+
+    # Crear venv si no existe
+    if [ ! -d "venv" ]; then
+        echo "📦 Creando entorno virtual..."
+        python3 -m venv venv
+        source venv/bin/activate
+        echo "📥 Instalando dependencias..."
+        pip install --upgrade pip
+        pip install -r requirements.txt
+    else
+        source venv/bin/activate
+    fi
+
+    echo "✅ Entorno activado"
+    echo ""
+    echo "🎯 Iniciando servidor en http://0.0.0.0:7860"
+    echo ""
+    python main.py
+
+# Intentar usar conda si está disponible (local)
+elif command -v conda &> /dev/null; then
     echo "🐍 Usando conda..."
-    
+
     # Crear entorno si no existe
     if ! conda env list | grep -q "^riverst "; then
         echo "📦 Creando entorno conda 'riverst'..."
-        conda create -n riverst python=3.11 -y
+        conda create -n riverst python=3.11 -c conda-forge -y
+        eval "$(conda shell.bash hook)"
         conda activate riverst
         conda install -c conda-forge ffmpeg -y
         pip install -r requirements.txt
