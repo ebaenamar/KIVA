@@ -9,6 +9,7 @@
 \usepackage{listings}
 \usepackage{hyperref}
 \usepackage{fontawesome5}
+\usepackage{amssymb}
 
 \usetikzlibrary{shapes.geometric, arrows, positioning, shadows, calc}
 
@@ -503,6 +504,267 @@ You'll primarily work with \textbf{advanced flow activities} to build sophistica
     \item \textbf{Transitions:} Movement between stages
     \item \textbf{Actions:} Custom Python handlers (pre/post)
 \end{itemize}
+\end{frame}
+
+\section{Learning Verification Without Data Storage}
+
+\begin{frame}{How Does KIVA Know Learning Happens?}
+\begin{alertblock}{Privacy-First Approach}
+KIVA can verify learning \textbf{without storing any personal data}
+\end{alertblock}
+
+\vspace{0.3cm}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{What KIVA Does NOT Store:}
+\begin{itemize}
+    \item No user profiles
+    \item No learning history
+    \item No persistent data
+    \item No cross-session tracking
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{What KIVA CAN Verify:}
+\begin{itemize}
+    \item In-session progress
+    \item Real-time comprehension
+    \item Immediate application
+    \item Session-end mastery
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Strategy 1: Contextual Memory (LLM)}
+\textbf{The LLM remembers the entire conversation in its context window:}
+
+\vspace{0.3cm}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=0.6cm,
+    msgbox/.style={rectangle, rounded corners, draw=kivablue, fill=kivablue!10, thick, minimum width=10cm, minimum height=0.6cm, align=left, font=\small}
+]
+\node[msgbox] (m1) {\texttt{[0:00] Avatar: "Today we learn 'apple' = manzana"}};
+\node[msgbox, below=of m1] (m2) {\texttt{[0:05] User: "What does apple mean?"}};
+\node[msgbox, below=of m2] (m3) {\texttt{[0:05] Avatar: "Apple means manzana!"}};
+\node[msgbox, below=of m3] (m4) {\texttt{[0:10] User: "Manzana!"}};
+\node[msgbox, below=of m4] (m5) {\texttt{[0:25] Avatar: "Remember 'apple'? → User: "Manzana!" \checkmark}};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{block}{Verification}
+The LLM can quiz on earlier content \textbf{anytime during the session}
+\end{block}
+\end{frame}
+
+\begin{frame}{Strategy 2: Session State Tracking}
+\textbf{Temporary state maintained only during active session:}
+
+\vspace{0.3cm}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{block}{Session State (Ephemeral)}
+\footnotesize
+\texttt{\{}\\
+\texttt{~~"words\_introduced": 5,}\\
+\texttt{~~"words\_correct": 4,}\\
+\texttt{~~"words\_failed": 1,}\\
+\texttt{~~"current\_difficulty": 2}\\
+\texttt{\}}
+\end{block}
+
+\column{0.5\textwidth}
+\textbf{Enables Real-Time:}
+\begin{itemize}
+    \item Progress tracking
+    \item Difficulty adaptation
+    \item Spaced repetition
+    \item Mastery detection
+\end{itemize}
+\end{columns}
+
+\vspace{0.3cm}
+
+\begin{alertblock}{Key Point}
+State is \textbf{deleted} when session ends — no persistence
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{Strategy 3: Progressive Verification}
+\textbf{Bloom's Taxonomy applied within a single session:}
+
+\vspace{0.3cm}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=0.8cm,
+    levelbox/.style={rectangle, rounded corners, draw=kivablue, fill=kivablue!15, thick, minimum width=3cm, minimum height=0.8cm, align=center, font=\small}
+]
+\node[levelbox] (l1) {\textbf{Level 1: Recognize}\\"Is apple = manzana?"};
+\node[levelbox, right=of l1] (l2) {\textbf{Level 2: Recall}\\"¿Qué significa apple?"};
+\node[levelbox, right=of l2] (l3) {\textbf{Level 3: Apply}\\"Describe tu fruta"};
+\node[levelbox, right=of l3] (l4) {\textbf{Level 4: Explain}\\"¿Por qué saludable?"};
+
+\draw[->, thick, kivablue] (l1) -- (l2);
+\draw[->, thick, kivablue] (l2) -- (l3);
+\draw[->, thick, kivablue] (l3) -- (l4);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{block}{How It Works}
+Each level builds on previous — if student fails Level 3, avatar knows they passed Level 2 but need more practice
+\end{block}
+\end{frame}
+
+\begin{frame}{Strategy 4: Spaced Repetition (In-Session)}
+\textbf{Testing at increasing intervals within same session:}
+
+\vspace{0.3cm}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=0.5cm,
+    timebox/.style={rectangle, rounded corners, draw=kivagreen, fill=kivagreen!15, thick, minimum width=2.2cm, minimum height=0.7cm, align=center, font=\footnotesize}
+]
+\node[timebox] (t0) {\textbf{0 min}\\Introduce};
+\node[timebox, right=of t0] (t1) {\textbf{5 min}\\Quiz 1};
+\node[timebox, right=of t1] (t2) {\textbf{15 min}\\Quiz 2};
+\node[timebox, right=of t2] (t3) {\textbf{25 min}\\Quiz 3};
+\node[timebox, right=of t3] (t4) {\textbf{30 min}\\Final Review};
+
+\draw[->, thick, kivagreen] (t0) -- (t1);
+\draw[->, thick, kivagreen] (t1) -- (t2);
+\draw[->, thick, kivagreen] (t2) -- (t3);
+\draw[->, thick, kivagreen] (t3) -- (t4);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{If Correct:}
+\begin{itemize}
+    \item Increase interval
+    \item Move to next concept
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{If Incorrect:}
+\begin{itemize}
+    \item Provide remediation
+    \item Re-test sooner
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Strategy 5: Real-Time Pattern Detection}
+\textbf{Analyzing user behavior during conversation:}
+
+\vspace{0.3cm}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{block}{Behavioral Signals}
+\begin{itemize}
+    \item \textbf{Hesitation} — Long pauses before answering
+    \item \textbf{Self-correction} — "Wait, I mean..."
+    \item \textbf{Confidence} — Voice tone, speed
+    \item \textbf{Accuracy} — Correct vs incorrect responses
+\end{itemize}
+\end{block}
+
+\column{0.5\textwidth}
+\begin{block}{Adaptive Response}
+\begin{itemize}
+    \item Slow down if hesitation
+    \item Provide hints if struggling
+    \item Challenge if confident
+    \item Celebrate if accurate
+\end{itemize}
+\end{block}
+\end{columns}
+
+\vspace{0.3cm}
+
+\begin{alertblock}{Example}
+If user pauses 5+ seconds → Avatar: "Take your time, here's a hint..."
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{Session Summary (No Storage Required)}
+\textbf{At session end, KIVA generates a summary:}
+
+\vspace{0.3cm}
+
+\begin{block}{Example Summary}
+\small
+"Today's session covered:\\
+\quad \checkmark{} 5 vocabulary words introduced\\
+\quad \checkmark{} 4 mastered on first try\\
+\quad \checkmark{} 1 needed 3 attempts (orange)\\[0.2cm]
+\textbf{Recommendation:} Review 'orange' in next session"
+\end{block}
+
+\vspace{0.3cm}
+
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{User Options:}
+\begin{itemize}
+    \item Download summary as PDF
+    \item Email to themselves
+    \item Copy to notes
+    \item Share with teacher
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{Privacy Benefits:}
+\begin{itemize}
+    \item User controls their data
+    \item Nothing stored on server
+    \item GDPR compliant
+    \item No consent needed
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Trade-offs: No Persistent Storage}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{\textcolor{kivagreen}{\faCheck{} Advantages}}
+\begin{itemize}
+    \item Complete privacy
+    \item GDPR compliant by default
+    \item No data breaches possible
+    \item Simpler infrastructure
+    \item Works offline
+    \item No consent management
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{\textcolor{kivared}{\faTimes{} Limitations}}
+\begin{itemize}
+    \item No long-term progress tracking
+    \item Each session starts fresh
+    \item No personalized curriculum
+    \item No cross-session adaptation
+    \item User must track own progress
+\end{itemize}
+\end{columns}
+
+\vspace{0.3cm}
+
+\begin{block}{Hybrid Approach (Optional)}
+Allow users to \textbf{opt-in} to long-term memory for personalized learning
+\end{block}
 \end{frame}
 
 \section{Hack Day Opportunities}
