@@ -263,23 +263,21 @@ KIVA is an \textbf{open-source AI tutoring platform} built on Riverst that enabl
     \item \textbf{TTS:} OpenAI TTS
 \end{itemize}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 
 \textbf{Flow System (Pipecat)}
 \begin{itemize}
     \item Stage progression tracking
     \item Function calling system
     \item Transition logic
-    \item Context management
 \end{itemize}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 
 \textbf{Analysis (Senselab)}
 \begin{itemize}
     \item Speech feature extraction
     \item Behavioral analysis
-    \item Automated transcription
 \end{itemize}
 \end{columns}
 \end{frame}
@@ -418,18 +416,17 @@ Use \texttt{./start\_server.sh} and \texttt{./start\_client.sh} from repo root
 \begin{enumerate}
     \item Open browser to \texttt{http://localhost:5173}
     \item You should see the Riverst homepage
-    \item Look for \textbf{"Knowledge Integration and Vocabulary Acquisition through AI (KIVA)"} section
+    \item Look for \textbf{"KIVA"} section
     \item Try the \textbf{"Child vocabulary training"} activity
 \end{enumerate}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 
 \begin{block}{Troubleshooting}
 \begin{itemize}
     \item \textbf{Port conflicts:} Check if 7860 or 5173 are in use
     \item \textbf{API errors:} Verify \texttt{.env} has valid OpenAI key
     \item \textbf{FFmpeg missing:} Install via conda or system package manager
-    \item \textbf{Browser issues:} Use Chrome 134+ for WebRTC support
 \end{itemize}
 \end{block}
 \end{frame}
@@ -598,12 +595,12 @@ State is \textbf{deleted} when session ends — no persistence
 \begin{frame}{Strategy 3: Progressive Verification}
 \textbf{Bloom's Taxonomy applied within a single session:}
 
-\vspace{0.3cm}
+\vspace{0.2cm}
 
 \begin{center}
 \begin{tikzpicture}[
-    node distance=0.8cm,
-    levelbox/.style={rectangle, rounded corners, draw=kivablue, fill=kivablue!15, thick, minimum width=3cm, minimum height=0.8cm, align=center, font=\small}
+    node distance=0.4cm,
+    levelbox/.style={rectangle, rounded corners, draw=kivablue, fill=kivablue!15, thick, minimum width=2.8cm, minimum height=0.7cm, align=center, font=\footnotesize}
 ]
 \node[levelbox] (l1) {\textbf{Level 1: Recognize}\\"Is apple = manzana?"};
 \node[levelbox, right=of l1] (l2) {\textbf{Level 2: Recall}\\"¿Qué significa apple?"};
@@ -616,9 +613,10 @@ State is \textbf{deleted} when session ends — no persistence
 \end{tikzpicture}
 \end{center}
 
-\vspace{0.3cm}
+\vspace{0.2cm}
 
 \begin{block}{How It Works}
+\small
 Each level builds on previous — if student fails Level 3, avatar knows they passed Level 2 but need more practice
 \end{block}
 \end{frame}
@@ -626,18 +624,18 @@ Each level builds on previous — if student fails Level 3, avatar knows they pa
 \begin{frame}{Strategy 4: Spaced Repetition (In-Session)}
 \textbf{Testing at increasing intervals within same session:}
 
-\vspace{0.3cm}
+\vspace{0.2cm}
 
 \begin{center}
 \begin{tikzpicture}[
-    node distance=0.5cm,
-    timebox/.style={rectangle, rounded corners, draw=kivagreen, fill=kivagreen!15, thick, minimum width=2.2cm, minimum height=0.7cm, align=center, font=\footnotesize}
+    node distance=0.3cm,
+    timebox/.style={rectangle, rounded corners, draw=kivagreen, fill=kivagreen!15, thick, minimum width=1.9cm, minimum height=0.65cm, align=center, font=\scriptsize}
 ]
 \node[timebox] (t0) {\textbf{0 min}\\Introduce};
 \node[timebox, right=of t0] (t1) {\textbf{5 min}\\Quiz 1};
 \node[timebox, right=of t1] (t2) {\textbf{15 min}\\Quiz 2};
 \node[timebox, right=of t2] (t3) {\textbf{25 min}\\Quiz 3};
-\node[timebox, right=of t3] (t4) {\textbf{30 min}\\Final Review};
+\node[timebox, right=of t3] (t4) {\textbf{30 min}\\Final};
 
 \draw[->, thick, kivagreen] (t0) -- (t1);
 \draw[->, thick, kivagreen] (t1) -- (t2);
@@ -646,7 +644,7 @@ Each level builds on previous — if student fails Level 3, avatar knows they pa
 \end{tikzpicture}
 \end{center}
 
-\vspace{0.3cm}
+\vspace{0.2cm}
 
 \begin{columns}[T]
 \column{0.5\textwidth}
@@ -799,34 +797,30 @@ Allow users to \textbf{opt-in} to long-term memory for personalized learning
     \begin{itemize}
         \item Monitor student performance in real-time
         \item Adjust vocabulary complexity dynamically
-        \item Implement spaced repetition
     \end{itemize}
-    
-    \vspace{0.3cm}
-    
+
+    \vspace{0.2cm}
+
     \item \textbf{Educator Dashboard}
     \begin{itemize}
         \item Live session monitoring
         \item Intervention triggers (student struggling)
-        \item Post-session analytics and insights
     \end{itemize}
-    
-    \vspace{0.3cm}
-    
+
+    \vspace{0.2cm}
+
     \item \textbf{Multi-Modal Assessment}
     \begin{itemize}
         \item Analyze speech patterns (pronunciation, fluency)
-        \item Track engagement via video (attention, emotion)
-        \item Combine metrics for holistic evaluation
+        \item Track engagement via video
     \end{itemize}
     
-    \vspace{0.3cm}
-    
+    \vspace{0.2cm}
+
     \item \textbf{Safety \& Content Filtering}
     \begin{itemize}
         \item Detect inappropriate content
         \item Age-appropriate language adaptation
-        \item Bias detection and mitigation
     \end{itemize}
 \end{enumerate}
 \end{frame}
@@ -839,18 +833,15 @@ Allow users to \textbf{opt-in} to long-term memory for personalized learning
     \item Custom handlers in \texttt{handlers.py}
     \item New flow configurations
     \item Additional AI service integrations
-    \item Database for learner profiles
-    \item Real-time analytics pipeline
 \end{itemize}
 
-\vspace{0.3cm}
+\vspace{0.2cm}
 
 \textbf{Frontend Extensions}
 \begin{itemize}
     \item New activity configuration UIs
     \item Live session monitoring
     \item Educator dashboards
-    \item Student progress views
 \end{itemize}
 
 \column{0.5\textwidth}
@@ -859,21 +850,19 @@ Allow users to \textbf{opt-in} to long-term memory for personalized learning
     \item Branching logic based on performance
     \item Dynamic content loading
     \item Multi-stage assessments
-    \item Personalization algorithms
 \end{itemize}
 
-\vspace{0.3cm}
+\vspace{0.2cm}
 
 \textbf{Analysis Extensions}
 \begin{itemize}
     \item Custom Senselab pipelines
     \item Speech quality metrics
     \item Engagement detection
-    \item Learning outcome prediction
 \end{itemize}
 \end{columns}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 \begin{alertblock}{Tip}
 Start with flow modifications — they're the fastest way to prototype new behaviors!
 \end{alertblock}
@@ -887,10 +876,9 @@ Start with flow modifications — they're the fastest way to prototype new behav
     \item \textbf{Activity Creation Guide:} \texttt{src/server/activities/ACTIVITY\_CREATION\_GUIDE.md}
     \item \textbf{Project Board:} \url{https://github.com/orgs/sensein/projects/55}
     \item \textbf{Pipecat Framework:} \url{https://github.com/pipecat-ai/pipecat}
-    \item \textbf{Senselab:} \url{https://github.com/sensein/senselab}
 \end{itemize}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 
 \begin{block}{Before Hack Day}
 \begin{enumerate}
@@ -898,7 +886,6 @@ Start with flow modifications — they're the fastest way to prototype new behav
     \item Watch the demo videos
     \item Explore the \texttt{vocab-tutoring} activity
     \item Read the Activity Creation Guide
-    \item Think about what you want to build!
 \end{enumerate}
 \end{block}
 \end{frame}
