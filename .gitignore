@@ -8,6 +8,10 @@ src/server/activities/vocab-tutoring/utils/higgs-audio
 src/server/uploads/
 src/client/react/public/avatars/sg-model2.glb
 
+# Environment files with secrets
+.env
+src/server/.env
+
 # Demo site
 demo-site/.env.local
 dist-demo/
