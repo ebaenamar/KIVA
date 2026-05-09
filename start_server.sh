@@ -28,6 +28,11 @@ fi
 if [ -n "$CODESPACES" ]; then
     echo "🐙 Detectado GitHub Codespaces - usando venv..."
 
+    # Instalar dependencias del sistema para OpenCV
+    echo "📦 Instalando dependencias del sistema..."
+    sudo apt-get update -qq
+    sudo apt-get install -y -qq libgl1 libglib2.0-0t64 libsm6 libxext6 libxrender1 libgomp1 ffmpeg > /dev/null 2>&1
+
     # Crear venv si no existe
     if [ ! -d "venv" ]; then
         echo "📦 Creando entorno virtual..."
